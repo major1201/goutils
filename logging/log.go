@@ -34,7 +34,7 @@ func (logger *Logger) Log(level int, levelString, msg string) {
 	if logger.IsUTC == true {
 		t = t.UTC()
 	}
-	logString := fmt.Sprintf("%s %s %s %s\n", t.Format(timeFormat), levelString, logger.Name, msg)
+	logString := fmt.Sprintf("[%s %s %s] %s\n", t.Format(timeFormat), levelString, logger.Name, msg)
 	logger.buf = logger.buf[:0]
 	logger.buf = append(logger.buf, logString...)
 	for _, w := range Writers {
