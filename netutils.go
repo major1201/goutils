@@ -1,11 +1,12 @@
 package goutils
 
 import (
-	"os"
-	"net/http"
 	"io"
+	"net/http"
+	"os"
 )
 
+// Download is used to conveniently download a file to the certain path
 func Download(url string, dest string) (err error) {
 	out, fileError := os.Create(dest)
 	defer out.Close()
@@ -14,11 +15,11 @@ func Download(url string, dest string) (err error) {
 		return
 	}
 	resp, httpError := http.Get(url)
-	defer resp.Body.Close()
 	if httpError != nil {
 		err = httpError
 		return
 	}
+	defer resp.Body.Close()
 	_, copyError := io.Copy(out, resp.Body)
 	if copyError != nil {
 		err = copyError

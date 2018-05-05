@@ -1,10 +1,10 @@
 package goutils
 
 import (
-	"testing"
+	"github.com/stretchr/testify/assert"
 	"os"
 	"path/filepath"
-	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestDownload(t *testing.T) {

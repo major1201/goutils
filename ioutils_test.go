@@ -1,10 +1,10 @@
 package goutils
 
 import (
-	"testing"
 	"github.com/stretchr/testify/assert"
 	"os"
 	"path/filepath"
+	"testing"
 )
 
 func TestIsExist(t *testing.T) {

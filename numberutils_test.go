@@ -1,8 +1,8 @@
 package goutils
 
 import (
-	"testing"
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestToInt(t *testing.T) {

@@ -1,8 +1,8 @@
 package goutils
 
 import (
-	"testing"
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestContains(t *testing.T) {
@@ -20,4 +20,3 @@ func TestDeepContains(t *testing.T) {
 	ta.False(DeepContains("golang", "go", "lang", "golang1"))
 	ta.True(DeepContains([]string{"golang", "go"}, []string{"go"}, []string{"golang", "go"}))
 }
-
