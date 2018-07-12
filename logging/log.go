@@ -15,7 +15,7 @@ const (
 	Fatal
 )
 
-const timeFormat = "2006-01-02T15:04:05"
+const timeFormat = "2006-01-02T15:04:05.000"
 
 // Logger struct
 type Logger struct {
