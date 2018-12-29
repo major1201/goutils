@@ -22,3 +22,11 @@ func TestToIntDv(t *testing.T) {
 	ta.Equal(123, ToIntDv("0123", 7))
 	ta.Equal(-1, ToIntDv("-1", 7))
 }
+
+func TestFileSize(t *testing.T) {
+	ta := assert.New(t)
+	ta.Equal("0 B", FileSize(0))
+	ta.Equal("1023 B", FileSize(1023))
+	ta.Equal("1.0 KB", FileSize(1024))
+	ta.Equal("1.0 MB", FileSize(1024*1024))
+}
