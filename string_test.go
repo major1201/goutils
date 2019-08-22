@@ -125,3 +125,14 @@ func TestBetween(t *testing.T) {
 	ta.Equal("bcde", Between("abcdefgh", "a", "f"))
 	ta.Equal("的世", Between("你好我的世界", "好我", "界"))
 }
+
+func TestIndent(t *testing.T) {
+	ta := assert.New(t)
+	ta.Equal(`  a:
+
+    b:
+      c: bb`, Indent(`a:
+
+  b:
+    c: bb`, "  "))
+}
