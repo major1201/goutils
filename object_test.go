@@ -5,6 +5,18 @@ import (
 	"testing"
 )
 
+func TestContainsString(t *testing.T) {
+	ta := assert.New(t)
+	ta.True(ContainsString("golang", "go", "lang", "golang"))
+	ta.False(ContainsString("golang", "go", "lang", "golang1"))
+}
+
+func TestContainsInt(t *testing.T) {
+	ta := assert.New(t)
+	ta.True(ContainsInt(1, 1, 2, 3))
+	ta.False(ContainsInt(4, 1, 2, 3))
+}
+
 func TestContains(t *testing.T) {
 	ta := assert.New(t)
 	ta.True(Contains("golang", "go", "lang", "golang"))

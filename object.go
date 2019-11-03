@@ -2,6 +2,26 @@ package goutils
 
 import "reflect"
 
+// ContainsString tells a string is in a list or not
+func ContainsString(obj string, v ...string) bool {
+	for _, o := range v {
+		if obj == o {
+			return true
+		}
+	}
+	return false
+}
+
+// ContainsInt tells an integer is in a list or not
+func ContainsInt(obj int, v ...int) bool {
+	for _, o := range v {
+		if obj == o {
+			return true
+		}
+	}
+	return false
+}
+
 // Contains tells an object is in a list or not
 func Contains(obj interface{}, v ...interface{}) bool {
 	for _, o := range v {
