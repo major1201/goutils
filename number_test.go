@@ -30,3 +30,12 @@ func TestFileSize(t *testing.T) {
 	ta.Equal("1.0 KB", FileSize(1024))
 	ta.Equal("1.0 MB", FileSize(1024*1024))
 }
+
+func TestMakeRange(t *testing.T) {
+	ta := assert.New(t)
+
+	ta.Nil(MakeRange(2, 1))
+	ta.Equal([]int{1, 2, 3, 4, 5}, MakeRange(1, 5))
+	ta.Equal([]int{2}, MakeRange(2, 2))
+	ta.Equal([]int{-3, -2, -1, 0, 1, 2}, MakeRange(-3, 2))
+}

@@ -40,3 +40,16 @@ func FileSize(s uint64) string {
 	units := []string{"B", "KB", "MB", "GB", "TB", "PB", "EB"}
 	return humanReadableBytes(s, 1024, units)
 }
+
+// MakeRange returns a slice starts from min and ends with max
+func MakeRange(min, max int) []int {
+	if min > max {
+		return nil
+	}
+
+	list := make([]int, max-min+1)
+	for i := range list {
+		list[i] = i + min
+	}
+	return list
+}
