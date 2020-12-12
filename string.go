@@ -12,10 +12,7 @@ const EmptyStr = ""
 
 // IsEmpty tells a string is empty or not
 func IsEmpty(s string) bool {
-	if len(s) == 0 {
-		return true
-	}
-	return false
+	return len(s) == 0
 }
 
 // IsNotEmpty tells a string is not empty or is
@@ -29,11 +26,7 @@ func IsBlank(s string) bool {
 		return true
 	}
 	reg := regexp.MustCompile(`^\s+$`)
-	actual := reg.MatchString(s)
-	if actual {
-		return true
-	}
-	return false
+	return reg.MatchString(s)
 }
 
 // IsNotBlank tells a string is not blank or is

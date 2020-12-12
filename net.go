@@ -9,7 +9,9 @@ import (
 // Download is used to conveniently download a file to the certain path
 func Download(url string, dest string) (err error) {
 	out, fileError := os.Create(dest)
-	defer out.Close()
+	defer func() {
+		_ = out.Close()
+	}()
 	if fileError != nil {
 		err = fileError
 		return

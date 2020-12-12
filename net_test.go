@@ -12,7 +12,7 @@ func TestDownload(t *testing.T) {
 	dest := filepath.Join(os.TempDir(), filepath.Base(url))
 	ta := assert.New(t)
 	ta.NotPanics(func() {
-		Download(url, dest)
+		ta.NoError(Download(url, dest))
 	})
 	ta.FileExists(dest)
 }

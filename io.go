@@ -10,26 +10,23 @@ func IsExist(path string) bool {
 	if err == nil {
 		return true
 	}
-	if os.IsNotExist(err) {
-		return false
-	}
-	return true
+	return !os.IsNotExist(err)
 }
 
 // IsFile tells a path is a file or not
 func IsFile(path string) bool {
 	fi, err := os.Stat(path)
-	if err == nil && fi.Mode().IsRegular() == true {
-		return true
+	if err != nil {
+		return false
 	}
-	return false
+	return fi.Mode().IsRegular()
 }
 
 // IsDir tells a path is a directory or not
 func IsDir(path string) bool {
 	fi, err := os.Stat(path)
-	if err == nil && fi.Mode().IsDir() == true {
-		return true
+	if err != nil {
+		return false
 	}
-	return false
+	return fi.Mode().IsDir()
 }
