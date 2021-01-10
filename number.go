@@ -53,3 +53,14 @@ func MakeRange(min, max int) []int {
 	}
 	return list
 }
+
+// Round round half up
+// For example:
+//     Round(0.363636, 3)  // 0.364
+//     Round(0.363636, 2)  // 0.36
+//     Round(0.363636, 1)  // 0.4
+//     Round(32, 1)        // 30
+func Round(val float64, precision int) float64 {
+	p := math.Pow10(precision)
+	return math.Floor(val*p+0.5) / p
+}
