@@ -48,7 +48,7 @@ func verifyFuncSignature(fn reflect.Value, types ...reflect.Type) bool {
 	}
 	// In() - returns the type of a function type's i'th input parameter.
 	for i := 0; i < len(types)-1; i++ {
-		if fn.Type().In(i) != types[i] {
+		if fn.Type().In(i) != types[i] && (types[i].Kind() == reflect.Interface && !fn.Type().In(i).Implements(types[i])) {
 			return false
 		}
 	}
