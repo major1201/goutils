@@ -65,3 +65,22 @@ func TestMap(t *testing.T) {
 		return "hello" + s
 	}))
 }
+
+func TestTernary(t *testing.T) {
+	ta := assert.New(t)
+	ta.Equal(1, Ternary(true, 1, 2))
+	ta.Equal(2, Ternary(false, 1, 2))
+}
+
+func TestDefaultIfNil(t *testing.T) {
+	ta := assert.New(t)
+
+	ta.Equal(1, DefaultIfNil(nil, 1))
+	ta.Equal(2, DefaultIfNil(2, 1))
+	ta.Nil(DefaultIfNil(nil, nil))
+
+	type tt struct{}
+	var obj *tt
+
+	ta.Equal(1, DefaultIfNil(obj, 1))
+}

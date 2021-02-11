@@ -82,3 +82,16 @@ func Map(vs []string, f func(string) string) []string {
 	}
 	return vsm
 }
+
+// Ternary the common (condition ? trueExpr : falseExpr) expression in C
+func Ternary(condition bool, trueExpr, falseExpr interface{}) interface{} {
+	if condition {
+		return trueExpr
+	}
+	return falseExpr
+}
+
+// DefaultIfNil return dv if obj is nil
+func DefaultIfNil(obj, dv interface{}) interface{} {
+	return Ternary(IsNil(obj), dv, obj)
+}
