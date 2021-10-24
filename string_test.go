@@ -1,8 +1,9 @@
 package goutils
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestIsEmpty(t *testing.T) {
@@ -135,4 +136,13 @@ func TestIndent(t *testing.T) {
 
   b:
     c: bb`, "  "))
+}
+
+func TestFormatMsgAndArgs(t *testing.T) {
+	ta := assert.New(t)
+	ta.Equal("", FormatMsgAndArgs())
+	ta.Equal("hello world", FormatMsgAndArgs("hello world"))
+	ta.Equal("12345", FormatMsgAndArgs(12345))
+	ta.Equal("hello world", FormatMsgAndArgs("hello %s", "world"))
+	ta.Equal("hello world 12345", FormatMsgAndArgs("hello world %d", 12345))
 }

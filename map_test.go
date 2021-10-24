@@ -1,8 +1,9 @@
 package goutils
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestCopyMapSS(t *testing.T) {
@@ -41,5 +42,40 @@ func TestMergeMapSS(t *testing.T) {
 	assert.Equal(t,
 		map[string]string{"key1": "value3"},
 		MergeMapSS(map[string]string{"key1": "value1"}, map[string]string{"key1": "value2"}, map[string]string{"key1": "value3"}),
+	)
+}
+
+func TestMergeStrIFaceMaps(t *testing.T) {
+	assert.Equal(t,
+		map[string]interface{}{},
+		MergeStrIFaceMaps(nil, nil),
+	)
+
+	assert.Equal(t,
+		map[string]interface{}{"key1": 1, "key2": 2},
+		MergeStrIFaceMaps(nil, map[string]interface{}{"key1": 1, "key2": 2}),
+	)
+
+	assert.Equal(t,
+		map[string]interface{}{"key1": 1, "key2": 2},
+		MergeStrIFaceMaps(map[string]interface{}{"key1": 1, "key2": 2}, nil),
+	)
+
+	assert.Equal(t,
+		map[string]interface{}{"key1": 1, "key2": 2},
+		MergeStrIFaceMaps(map[string]interface{}{"key1": 3, "key2": 4}, map[string]interface{}{"key1": 1, "key2": 2}),
+	)
+
+	assert.Equal(t,
+		map[string]interface{}{"key1": 1, "key2": 2},
+		MergeStrIFaceMaps(map[string]interface{}{"key1": 1, "key2": map[string]interface{}{"key3": "123"}}, map[string]interface{}{"key1": 1, "key2": 2}),
+	)
+
+	assert.Equal(t,
+		map[string]interface{}{"key1": 1, "key2": map[string]interface{}{"key3": "456", "key4": 123, "key5": []int{1, 2, 3}}, "key3": 3},
+		MergeStrIFaceMaps(
+			map[string]interface{}{"key1": 1, "key2": map[string]interface{}{"key3": "123", "key5": []int{1, 2, 3}}},
+			map[string]interface{}{"key1": 1, "key2": map[string]interface{}{"key3": "456", "key4": 123}, "key3": 3},
+		),
 	)
 }

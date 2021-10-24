@@ -1,10 +1,12 @@
 package goutils
 
 import (
-	"github.com/google/uuid"
+	"fmt"
 	"reflect"
 	"regexp"
 	"strings"
+
+	"github.com/google/uuid"
 )
 
 // EmptyStr is the empty string const
@@ -127,6 +129,24 @@ func IndentBytes(b, prefix []byte) []byte {
 		bol = c == '\n'
 	}
 	return res
+}
+
+// FormatMsgAndArgs format msg and args interface{}
+func FormatMsgAndArgs(msgAndArgs ...interface{}) string {
+	if len(msgAndArgs) == 0 || msgAndArgs == nil {
+		return ""
+	}
+	if len(msgAndArgs) == 1 {
+		msg := msgAndArgs[0]
+		if msgAsStr, ok := msg.(string); ok {
+			return msgAsStr
+		}
+		return fmt.Sprintf("%+v", msg)
+	}
+	if len(msgAndArgs) > 1 {
+		return fmt.Sprintf(msgAndArgs[0].(string), msgAndArgs[1:]...)
+	}
+	return ""
 }
 
 // UUID returns a random generated UUID string

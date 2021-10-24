@@ -33,3 +33,23 @@ func MergeMapSS(base map[string]string, overrides ...map[string]string) map[stri
 
 	return base
 }
+
+// MergeStrIFaceMaps merge 2 map[string]interface{} into one
+func MergeStrIFaceMaps(to, from map[string]interface{}) map[string]interface{} {
+	out := make(map[string]interface{}, len(to))
+	for k, v := range to {
+		out[k] = v
+	}
+	for k, v := range from {
+		if v, ok := v.(map[string]interface{}); ok {
+			if bv, ok := out[k]; ok {
+				if bv, ok := bv.(map[string]interface{}); ok {
+					out[k] = MergeStrIFaceMaps(bv, v)
+					continue
+				}
+			}
+		}
+		out[k] = v
+	}
+	return out
+}
